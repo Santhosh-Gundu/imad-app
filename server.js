@@ -4,7 +4,83 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
+var date = new Date().toString();
 
+var requests = {
+
+		 'request-One' : {
+			title: 'request-One',
+			heading: 'request-One | Santhosh Kumar',
+			date: date,
+			content: `<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+		veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+		commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+		velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+		mollit anim id est laborum
+		</p>`
+			
+		},
+		 'request-Two' : {
+			title: 'request-Two',
+			heading: 'request-Two | Santhosh Kumar',
+			date: date,
+			content: `<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+		veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+		commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+		velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+		mollit anim id est laborum
+		</p>`
+			
+		},
+
+		'request-Three' :{
+			title: 'request-Three',
+			heading: 'request-Three | Santhosh Kumar',
+			date: date,
+			content: `<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+		veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+		commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+		velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+		occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+		mollit anim id est laborum
+		</p>`
+			
+		}
+
+};
+	function createTemplate(data){
+		var title = data.title;
+		var date = data.date;
+		var heading = data.heading;
+		var content = data.content;
+			var htmlTemplate = `<html>
+			<head>
+			<title> ${title}</title>
+			<meta name="viewport" content = "width=device-width, initial-scale=1"/>
+			</head>
+			<body>
+			<h1>${heading}</h1>
+
+			<div>
+			<p>
+			<h2>${date}</h2>
+			</p>
+			</div>
+			<p>
+			${content}
+			</p>
+			</body>
+			</html>`;
+			return htmlTemplate;
+	}
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
@@ -17,17 +93,13 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-app.get('/request-one', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'requestOne.html'));
+app.get('/:requestName', function (req, res) {
+  //res.sendFile(path.join(__dirname, 'ui', 'requestOne.html'));
+  var requestName = req.params.requestName;
+  res.send(createTemplate(requests[requestName]));
 });
 
-app.get('/request-two', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'requestTwo.html'));
-});
 
-app.get('/request-three', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'requestThree.html'));
-});
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
