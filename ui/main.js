@@ -50,6 +50,7 @@ submit.onclick = function(){
 						
 						var names	 = request.responseText;
 						names = JSON.parse(names);
+						console.log(names);
 						//Render the variable in the correct span
 							var i = 0;
 							var list = "";
