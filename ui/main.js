@@ -57,6 +57,7 @@ submit.onclick = function(){
 								list += "<li>"+names[i]+"</li>";
 								}
 								var unOrderedList = document.getElementById("list");
+								console.log(list);
 								unOrderedList.innerHTML = list;
 					}
 				}
