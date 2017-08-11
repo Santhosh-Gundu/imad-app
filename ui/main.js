@@ -54,7 +54,7 @@ submit.onclick = function(){
 							var i = 0;
 							var list = "";
 							for( ; i < names.length ; i++){
-								list += "<li>" + names[i] + "</li>";
+								list += "<li>"+names[i]+"</li>";
 								}
 								var unOrderedList = document.getElementById("list");
 								unOrderedList.innerHTML = list;
