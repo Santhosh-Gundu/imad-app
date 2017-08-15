@@ -17,7 +17,7 @@ var date = new Date().toString();
 
 //to connect to DB
 var pool = new Pool(config);
-app.get('/article', function(req, res) {
+app.get('/article-db', function(req, res) {
     
     //make a select request
     //return response with the results
