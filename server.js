@@ -97,7 +97,7 @@ app.get('/counter', function (req, res) {
 	counter = counter +1;
 	res.send(counter.toString());
 });	
-
+/*
 //to connect to DB
 var pool = new Pool(config);
 
@@ -117,6 +117,7 @@ app.get('/article-db', function(req, res) {
     });
     
 });
+*/
 var names = [];
 //app.get('/submit-name/:name' , function (req, res) { // url /submit-name/name1
 app.get('/submit-name' , function (req, res) {	
