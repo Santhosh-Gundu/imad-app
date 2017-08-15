@@ -107,6 +107,7 @@ app.get('/article-db', function(req, res) {
     pool.query('select * from article' , function(err, result){
         
         if(err){
+            console.log("**********"+err.toString());
             res.status(500).send(err.toString());
         }
         else{
