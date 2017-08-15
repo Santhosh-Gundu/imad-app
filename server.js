@@ -121,7 +121,7 @@ app.get('/ui/style.css', function (req, res) {
 
 //to connect to DB
 var pool = new Pool(config);
-/*
+
 app.get('/article-db', function(req, res) {
     
     //make a select request
@@ -138,7 +138,7 @@ app.get('/article-db', function(req, res) {
     });
     
 });
-*/
+
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
