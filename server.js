@@ -97,10 +97,10 @@ app.get('/counter', function (req, res) {
 	counter = counter +1;
 	res.send(counter.toString());
 });	
-/*
+
 //to connect to DB
 var pool = new Pool(config);
-
+/*
 app.get('/article-db', function(req, res) {
     
     //make a select request
