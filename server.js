@@ -108,7 +108,16 @@ app.get('/submit-name' , function (req, res) {
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-/*
+
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+});
+
+app.get('/ui/madi.png', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
+
+
 //to connect to DB
 var pool = new Pool(config);
 app.get('/article', function(req, res) {
@@ -125,14 +134,6 @@ app.get('/article', function(req, res) {
         }
     });
     
-});
-*/
-app.get('/ui/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
-});
-
-app.get('/ui/madi.png', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
 app.get('/:requestName', function (req, res) {
