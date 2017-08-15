@@ -99,7 +99,7 @@ app.get('/counter', function (req, res) {
 
 //to connect to DB
 var pool = new Pool(config);
-/*
+
 app.get('/article-db', function(req, res) {
     
     //make a select request
@@ -115,7 +115,7 @@ app.get('/article-db', function(req, res) {
         }
     });
     
-});*/
+});
 var names = [];
 //app.get('/submit-name/:name' , function (req, res) { // url /submit-name/name1
 app.get('/submit-name' , function (req, res) {	
