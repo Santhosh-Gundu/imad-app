@@ -98,6 +98,27 @@ app.get('/counter', function (req, res) {
 	res.send(counter.toString());
 });	
 
+
+var names = [];
+//app.get('/submit-name/:name' , function (req, res) { // url /submit-name/name1
+app.get('/submit-name' , function (req, res) {	
+	//var name = req.params.name; //use this for the above commented code
+	var name = req.query.name;   // url is /submit-name?abc
+	names.push(name);
+	res.send(JSON.stringify(names));
+});
+	
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
+
+
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+});
+
+
 //to connect to DB
 var pool = new Pool(config);
 /*
@@ -118,25 +139,6 @@ app.get('/article-db', function(req, res) {
     
 });
 */
-var names = [];
-//app.get('/submit-name/:name' , function (req, res) { // url /submit-name/name1
-app.get('/submit-name' , function (req, res) {	
-	//var name = req.params.name; //use this for the above commented code
-	var name = req.query.name;   // url is /submit-name?abc
-	names.push(name);
-	res.send(JSON.stringify(names));
-});
-	
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-});
-
-
-
-app.get('/ui/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
-});
-
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
