@@ -15,24 +15,6 @@ app.use(morgan('combined'));
 var date = new Date().toString();
 
 
-//to connect to DB
-var pool = new Pool(config);
-app.get('/article-db', function(req, res) {
-    
-    //make a select request
-    //return response with the results
-    pool.query('select * from article' , function(err, result){
-        
-        if(err){
-            res.status(500).send(err.toString());
-        }
-        else{
-            res.send(JSON.stringify(result));
-        }
-    });
-    
-});
-
 var requests = {
 
 		 'request-One' : {
@@ -128,6 +110,8 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
@@ -136,7 +120,23 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-
+//to connect to DB
+var pool = new Pool(config);
+app.get('/article-db', function(req, res) {
+    
+    //make a select request
+    //return response with the results
+    pool.query('select * from article' , function(err, result){
+        
+        if(err){
+            res.status(500).send(err.toString());
+        }
+        else{
+            res.send(JSON.stringify(result));
+        }
+    });
+    
+});
 app.get('/:requestName', function (req, res) {
   //res.sendFile(path.join(__dirname, 'ui', 'requestOne.html'));
   var requestName = req.params.requestName;
