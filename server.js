@@ -97,6 +97,23 @@ app.get('/counter', function (req, res) {
 	res.send(counter.toString());
 });	
 
+//to connect to DB
+var pool = new Pool(config);
+app.get('/article-db', function(req, res) {
+    
+    //make a select request
+    //return response with the results
+    pool.query('select * from article' , function(err, result){
+        
+        if(err){
+            res.status(500).send(err.toString());
+        }
+        else{
+            res.send(JSON.stringify(result));
+        }
+    });
+    
+});
 var names = [];
 //app.get('/submit-name/:name' , function (req, res) { // url /submit-name/name1
 app.get('/submit-name' , function (req, res) {	
@@ -122,23 +139,7 @@ app.get('/ui/madi.png', function (req, res) {
 
 
 
-//to connect to DB
-var pool = new Pool(config);
-app.get('/article-db', function(req, res) {
-    
-    //make a select request
-    //return response with the results
-    pool.query('select * from article' , function(err, result){
-        
-        if(err){
-            res.status(500).send(err.toString());
-        }
-        else{
-            res.send(JSON.stringify(result));
-        }
-    });
-    
-});
+
 
 
 app.get('/:requestName', function (req, res) {
