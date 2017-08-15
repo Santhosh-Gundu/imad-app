@@ -117,7 +117,7 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-
+/*
 //to connect to DB
 var pool = new Pool(config);
 app.get('/article', function(req, res) {
@@ -135,7 +135,7 @@ app.get('/article', function(req, res) {
     });
     
 });
-
+*/
 app.get('/:requestName', function (req, res) {
   //res.sendFile(path.join(__dirname, 'ui', 'requestOne.html'));
   var requestName = req.params.requestName;
