@@ -118,7 +118,7 @@ function hash(input, salt){
     
     var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
     //pbkdf - password based key derivation function
-    return ['pbkdf2', 10000,  'salt', hashed.toString('hex')].join($);
+    return ['pbkdf2', 10000,  'salt', hashed.toString('hex')].join('$');
 }
 
 
