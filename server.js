@@ -13,7 +13,7 @@ var config = {
     password: process.env.DB_PASSWORD
 };
 
-var date = new Date().toString();
+var date = new Date().toDateString();
 
 
 var requests = {
@@ -81,7 +81,7 @@ var requests = {
 
 			<div>
 			<p>
-			<h2>${date}</h2>
+			<h2>${date.toDateString()}</h2>
 			</p>
 			</div>
 			<p>
