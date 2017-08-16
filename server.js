@@ -95,7 +95,7 @@ var requests = {
 
 function hash(input, salt){
     
-    var hashed = crypto.pbkdf25ync(input, salt, 10000, 512, 'shaS12');
+    var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'shaS12');
     return hashed.toString('hex');
 }
 
