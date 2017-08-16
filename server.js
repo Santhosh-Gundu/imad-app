@@ -14,8 +14,7 @@ var config = {
 };
 
 var date = new Date().toDateString();
-
-
+/*
 var requests = {
 
 		 'request-One' : {
@@ -65,7 +64,7 @@ var requests = {
 			
 		}
 
-};
+};*/
 	function createTemplate(data){
 		var title = data.title;
 		var date = data.date;
