@@ -145,7 +145,7 @@ app.get('/requests/:requestName', function (req, res) {
   var requestName = req.params.requestName;
   //res.send(createTemplate(requests[requestName]));
   
-  pool.query("SELECT * FROM requests WHERE title = '" + requestName +"'", function(err, result){
+  pool.query("SELECT * FROM requests WHERE title = $1",[requestName] , function(err, result){
         if(err){
             res.status(500).send(err.toString());
         }
