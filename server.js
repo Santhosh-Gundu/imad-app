@@ -2,9 +2,12 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var pool = require('pg').Pool;
+var crypto = require('crypto');
+var bodyparser = require('body-parser');
+
 var app = express();
 app.use(morgan('combined'));
-var crypto = require('crypto');
+app.use(bodyparser.json());
 
 var config = {
     user: 'santugundu',
@@ -113,7 +116,7 @@ app.get('/', function (req, res) {
 });
 
 
-
+//For Hashing password
 function hash(input, salt){
     
     var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
@@ -127,6 +130,7 @@ app.get('/hash/:input', function(req, res){
    res.send(hashString);
     
 });
+//hash password ends here
 
 //to connect to DB
 var pool = new pool(config);
@@ -145,6 +149,25 @@ app.get('/test-db', function(req, res) {
         }
     });
     
+});
+
+//Authenticating username and password taking from POST body
+app.post('/create-user',function(req, res){
+   
+   var username = req.body.username;
+   var password = req.body.password;
+   var salt = crypto.randomBytes(128).toString('hex');
+   var hasedPassword = hash(password, salt);
+   
+   pool.query("INSERT INTO userDetails('username','password') values($1, $2)",[userName, hashedPassword], function(err, result){
+       if(err){
+            res.status(500).send(err.toString());
+        }
+        else
+        {
+            res.send("User successfully created" + username);
+        }
+   } );
 });
 
 app.get('/ui/style.css', function (req, res) {
