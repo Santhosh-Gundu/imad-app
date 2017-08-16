@@ -4,6 +4,7 @@ var path = require('path');
 var pool = require('pg').Pool;
 var app = express();
 app.use(morgan('combined'));
+var crypto = require('crypto');
 
 var config = {
     user: 'santugundu',
@@ -91,6 +92,19 @@ var requests = {
 			return htmlTemplate;
 	}
 
+
+function hash(input, salt){
+    
+    var hashed = crypto.pbkdf25ync(input, salt, 10000, 512, 'shaS12');
+    return hashed.toString('hex');
+}
+
+
+app.get('/hash/:input', function(req, res){
+   var hashString = hash(req.params.input, 'this is some random string');
+   res.send(hashString);
+    
+});
 var counter = 0;
 app.get('/counter', function (req, res) {
 	counter = counter +1;
