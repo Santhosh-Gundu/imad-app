@@ -192,7 +192,7 @@ app.post('/login', function(req, res){
                 var salt = hashedPassword.split('$')[2];
                 var dbString = hash(hashedPassword, salt);
                 
-                res.send("Verification completed");
+                res.send("Verification completed"+dbString);
                /* if(dbString === hashedPassword)
                 {
                     res.send("Credentials are correct");
