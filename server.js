@@ -193,14 +193,14 @@ app.post('/login', function(req, res){
                 var dbString = hash(hashedPassword, salt);
                 
                 res.send("Verification completed"+hashedPassword);
-               /* if(dbString === hashedPassword)
+                if(dbString === hashedPassword)
                 {
                     res.send("Credentials are correct");
                 }
                 else
                 {
                     res.send(403).send("Invalid username/password");
-                }*/
+                }
                
             }
         }
