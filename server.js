@@ -170,6 +170,42 @@ app.post('/create-user',function(req, res){
    } );
 });
 
+app.post('/login', function(req, res){
+    
+     var username = req.body.username;
+     var password = req.body.password;
+    
+    
+    pool.query('SELECT * FROM "userDetails" WHERE username = $1',[username], function(err, result){
+       if(err){
+            res.status(500).send(err.toString());
+        }
+        else
+        {
+            if(result.rows.length === 0){
+                res.status(403).send("not a valid username/password");
+                
+            }
+            else{
+                //match the password
+                var hashedPassword = result.rows[0].password;
+                var salt = hashedPassword.split('$')[2];
+                var dbString = hash(hashedPassword, salt);
+                
+                if(dbString === hashedPassword)
+                {
+                    res.send("Credentials are correct");
+                }
+                else
+                {
+                    res.send(403).send("Invalid username/password");
+                }
+               
+            }
+        }
+   } );
+});
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
