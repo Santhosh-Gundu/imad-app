@@ -183,7 +183,7 @@ app.post('/login', function(req, res){
         else
         {
             if(result.rows.length === 0){
-                res.status(403).send("not a valid username/password");
+                res.send(403).send("not a valid username/password");
                 
             }
             else{
