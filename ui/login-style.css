@@ -21,7 +21,7 @@ font-weight: bold;
 margin: 50px auto;
 width: 300px;
 }
-form fieldset input[type="text"], input[type="password"] {
+form fieldset /*input[type="text"], input[type="password"]*/ {
 background-color: #e5e5e5;
 border: none;
 -moz-border-radius: 3px;
